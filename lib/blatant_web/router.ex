@@ -20,6 +20,9 @@ defmodule BlatantWeb.Router do
     import Phoenix.LiveDashboard.Router
 
     scope "/" do
+      if Mix.env == :dev do
+        forward "/graphiql", Absinthe.Plug.GraphiQL, schema: BlatantWeb.Schema
+      end
       pipe_through [:fetch_session, :protect_from_forgery]
       live_dashboard "/dashboard", metrics: BlatantWeb.Telemetry
     end
