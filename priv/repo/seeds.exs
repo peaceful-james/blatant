@@ -12,10 +12,14 @@
 
 alias Blatant.Repo
 alias Blatant.Accounts.User
+alias Blatant.Content.Author
 alias Blatant.Content.Post
 
 user = %User{name: "Peaceful James", username: "peaceful-james"}
 |> Repo.insert!([email: "james@peacefulprogramming.xyz"])
 
-%Post{title: "My reckon", body: "Be peaceful and bang out some code.", user_id: user.id}
+author = %Author{bio: "Journeyman developer who values dignity, autonomy and humility.", user_id: user.id}
+|> Repo.insert!
+
+%Post{title: "My reckon", body: "Be peaceful and bang out some code.", author_id: author.id}
 |> Repo.insert!
