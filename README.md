@@ -4,10 +4,20 @@
 
 https://console.gigalixir.com/#/
 
-The gigalixir app was created using this command:
+Follow this:
+https://gigalixir.readthedocs.io/en/latest/getting-started-guide.html#install-the-command-line-interface
+
+Alias `gigalixir` to `g`.
+Note the gigalixir app was created using this command (AFTER populating the `elixir_buildpack.config` file):
 ```
-gigalixir create -n blatant -c gcp -r europe-west1 
+g login
+g create -n blatant -c gcp -r europe-west1 
+g pg:create --free
+git push gigalixir master
+g run mix ecto.migrate
+
 ```
+see app details with `g app`, db details with `g pg` and status with `g ps`.
 
 ### default readme:
 
