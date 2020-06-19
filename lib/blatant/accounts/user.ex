@@ -3,13 +3,11 @@ defmodule Blatant.Accounts.User do
   import Ecto.Changeset
 
   alias Blatant.Accounts.Credential
-  alias Blatant.Content.Post
 
   schema "users" do
     field :name, :string
     field :username, :string
     has_one :credential, Credential
-    has_many :posts, Post
 
     timestamps()
   end

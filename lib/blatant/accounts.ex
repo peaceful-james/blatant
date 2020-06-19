@@ -24,6 +24,28 @@ defmodule Blatant.Accounts do
   end
 
   @doc """
+  Finds a single user, with credential preloaded.
+
+  Returns nil if the User does not exist.
+
+  ## Examples
+
+  iex> find_user(123)
+  %User{}
+
+  iex> find_user(456)
+  nil
+
+  """
+  def find_user(id) do
+    case Repo.get(User, id) do
+      nil -> nil
+      user -> user
+      |> Repo.preload(:credential)
+    end
+  end
+
+  @doc """
   Gets a single user, with credential preloaded.
 
   Raises `Ecto.NoResultsError` if the User does not exist.

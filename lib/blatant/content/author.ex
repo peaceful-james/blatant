@@ -3,10 +3,13 @@ defmodule Blatant.Content.Author do
   import Ecto.Changeset
 
   alias Blatant.Accounts.User
+  alias Blatant.Content.Post
 
   schema "authors" do
     field :bio, :string
+    field :name, :string, virtual: true
     belongs_to :user, User
+    has_many :posts, Post
 
     timestamps()
   end

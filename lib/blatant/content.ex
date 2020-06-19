@@ -123,6 +123,28 @@ defmodule Blatant.Content do
   end
 
   @doc """
+  Finds a single author, with user preloaded.
+
+  Returns nil if the Author does not exist.
+
+  ## Examples
+
+  iex> find_author(123)
+  %Author{}
+
+  iex> find_author(456)
+  nil
+
+  """
+  def find_author(id) do
+    case Repo.get(Author, id) do
+      nil -> nil
+      author -> author
+      |> Repo.preload([:user, :posts])
+    end
+  end
+
+  @doc """
   Gets a single author.
 
   Raises `Ecto.NoResultsError` if the Author does not exist.
