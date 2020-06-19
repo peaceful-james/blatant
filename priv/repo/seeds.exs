@@ -11,12 +11,16 @@
 # and so on) as they will fail if something goes wrong.
 
 alias Blatant.Repo
+alias Blatant.Accounts.Credential
 alias Blatant.Accounts.User
 alias Blatant.Content.Author
 alias Blatant.Content.Post
 
 user = %User{name: "Peaceful James", username: "peaceful-james"}
-|> Repo.insert!([email: "james@peacefulprogramming.xyz"])
+|> Repo.insert!
+
+%Credential{email: "james@peacefulprogramming.xyz", user_id: user.id}
+|> Repo.insert!
 
 author = %Author{bio: "Journeyman developer who values dignity, autonomy and humility.", user_id: user.id}
 |> Repo.insert!

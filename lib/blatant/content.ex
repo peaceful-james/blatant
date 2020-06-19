@@ -19,7 +19,7 @@ defmodule Blatant.Content do
   """
   def list_posts do
     Repo.all(Post)
-    |> Repo.preload(:user)
+    |> Repo.preload(author: [user: :credential])
   end
 
   @doc """
@@ -36,7 +36,10 @@ defmodule Blatant.Content do
       ** (Ecto.NoResultsError)
 
   """
-  def get_post!(id), do: Repo.get!(Post, id)
+  def get_post!(id) do
+    Repo.get!(Post, id)
+    |> Repo.preload(author: [user: :credential])
+  end
 
   @doc """
   Creates a post.
@@ -116,6 +119,7 @@ defmodule Blatant.Content do
   """
   def list_authors do
     Repo.all(Author)
+    |> Repo.preload(:user)
   end
 
   @doc """
@@ -132,7 +136,10 @@ defmodule Blatant.Content do
       ** (Ecto.NoResultsError)
 
   """
-  def get_author!(id), do: Repo.get!(Author, id)
+  def get_author!(id) do
+    Repo.get!(Author, id)
+    |> Repo.preload(user: :credential)
+  end
 
   @doc """
   Creates a author.
