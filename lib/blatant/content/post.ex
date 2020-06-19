@@ -2,9 +2,12 @@ defmodule Blatant.Content.Post do
   use Ecto.Schema
   import Ecto.Changeset
 
+  alias Blatant.Accounts.User
+
   schema "posts" do
     field :body, :string
     field :title, :string
+    belongs_to :user, User
 
     timestamps()
   end
