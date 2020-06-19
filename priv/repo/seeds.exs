@@ -17,5 +17,5 @@ alias Blatant.Content.Post
 user = %User{name: "Peaceful James", username: "peaceful-james"}
 |> Repo.insert!([email: "james@peacefulprogramming.xyz"])
 
-post = %Post{title: "My reckon", body: "Be peaceful and bang out some code.", user_id: user.id}
+%Post{title: "My reckon", body: "Be peaceful and bang out some code.", user_id: user.id}
 |> Repo.insert!
