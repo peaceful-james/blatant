@@ -5,8 +5,9 @@ defmodule BlatantWeb.Router do
     plug :accepts, ["json"]
   end
 
-  scope "/api", BlatantWeb do
+  scope "/api" do
     pipe_through :api
+    forward "/", Absinthe.Plug, schema: BlatantWeb.Schema
   end
 
   # Enables LiveDashboard only for development
