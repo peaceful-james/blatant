@@ -1,6 +1,6 @@
 # Blatant
 
-### Gigalixir
+### Deploy with Gigalixir
 
 https://console.gigalixir.com/#/
 
@@ -17,7 +17,6 @@ g config:set BASIC_AUTH_PASSWORD=bar    # obviously not the actual value
 g pg:create --free
 git push gigalixir master
 g run mix ecto.migrate
-
 ```
 see app details with `g app`, db details with `g pg` and status with `g ps`.
 
