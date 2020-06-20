@@ -12,6 +12,8 @@ Note the gigalixir app was created using this command (AFTER populating the `eli
 ```
 g login
 g create -n blatant -c gcp -r europe-west1 
+g config:set BASIC_AUTH_USERNAME=foo    # obviously not the actual value
+g config:set BASIC_AUTH_PASSSWORD=bar    # obviously not the actual value
 g pg:create --free
 git push gigalixir master
 g run mix ecto.migrate

@@ -1,6 +1,13 @@
 defmodule BlatantWeb.Router do
   use BlatantWeb, :router
 
+  import Phoenix.LiveDashboard.Router
+  import Plug.BasicAuth
+
+  pipeline :autobrowser do
+    plug :basic_auth, Application.compile_env(:blatant, :basic_auth)
+  end
+
   pipeline :api do
     plug :accepts, ["json"]
   end
@@ -17,13 +24,14 @@ defmodule BlatantWeb.Router do
   # If your application does not have an admins-only section yet,
   # you can use Plug.BasicAuth to set up some basic authentication
   # as long as you are also using SSL (which you should anyway).
-  if Mix.env() in [:dev, :test] do
-    import Phoenix.LiveDashboard.Router
 
-    scope "/" do
-      forward "/graphiql", Absinthe.Plug.GraphiQL, schema: BlatantWeb.Schema
-      pipe_through [:fetch_session, :protect_from_forgery]
-      live_dashboard "/dashboard", metrics: BlatantWeb.Telemetry
+  scope "/" do
+    unless Mix.env() in [:dev, :test] do
+      pipe_through :autobrowser
     end
+    # TODO @peaceful-james re-enable this protect_from_forgery thing?
+    # pipe_through [:fetch_session, :protect_from_forgery]
+    forward "/graphiql", Absinthe.Plug.GraphiQL, schema: BlatantWeb.Schema
+    live_dashboard "/dashboard", metrics: BlatantWeb.Telemetry
   end
 end

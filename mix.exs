@@ -46,7 +46,6 @@ defmodule Blatant.MixProject do
       {:dialyxir, "~> 1.0", only: [:dev], runtime: false},
       {:absinthe, "~> 1.5.0"},
       {:absinthe_plug, "~> 1.5.0"},
-      {:bcrypt_elixir, "~> 2.0"},
     ]
   end
 

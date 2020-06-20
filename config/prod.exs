@@ -10,9 +10,11 @@ use Mix.Config
 # which you should run after static files are built and
 # before starting your production server.
 config :blatant, BlatantWeb.Endpoint,
-  url: [host: "blatanthasnodomainyet.damn", port: 443],
+  url: [host: nil, port: 80],
   cache_static_manifest: "priv/static/cache_manifest.json",
   force_ssl: [rewrite_on: [:x_forwarded_proto]]
+
+config :blatant, :basic_auth, username: System.get_env("BASIC_AUTH_USERNAME"), password: System.get_env("BASIC_AUTH_PASSWORD")
 
 # Do not print debug messages in production
 config :logger, level: :info
