@@ -10,6 +10,7 @@ defmodule BlatantWeb.Router do
 
   pipeline :api do
     plug :accepts, ["json"]
+    plug :basic_auth, Application.compile_env(:blatant, :basic_auth)
   end
 
   scope "/api" do
