@@ -5,8 +5,10 @@ use Mix.Config
 # when generating URLs.
 
 config :blatant, BlatantWeb.Endpoint,
-  url: [host: nil, port: 80],
-  force_ssl: [rewrite_on: [:x_forwarded_proto]]
+  http: [port: {:system, "PORT"}], # Possibly not needed, but doesn't hurt
+  url: [nil, port: 80],
+  secret_key_base: Map.fetch!(System.get_env(), "SECRET_KEY_BASE"),
+  server: true
 
 config :blatant, :basic_auth, username: System.get_env("BASIC_AUTH_USERNAME"), password: System.get_env("BASIC_AUTH_PASSWORD")
 
