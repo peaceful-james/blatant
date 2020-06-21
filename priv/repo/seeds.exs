@@ -25,5 +25,9 @@ user = %User{name: "Peaceful James", username: "peaceful-james"}
 author = %Author{bio: "Journeyman developer who values dignity, autonomy and humility.", user_id: user.id}
 |> Repo.insert!
 
-%Post{title: "My reckon", body: "Be peaceful and bang out some code.", author_id: author.id}
-|> Repo.insert!
+%Post{
+  title: "My reckon",
+  body: "Be peaceful and bang out some code.",
+  author_id: author.id,
+  published_at: NaiveDateTime.utc_now() |> NaiveDateTime.truncate(:second)
+} |> Repo.insert!

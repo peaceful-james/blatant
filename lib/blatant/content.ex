@@ -8,6 +8,14 @@ defmodule Blatant.Content do
 
   alias Blatant.Content.Post
 
+  def list_posts(author, %{published_at: published_at}) do
+    from(p in Post,
+      where: p.author_id == ^author.id,
+      where: fragment("date_trunc('day', ?)", p.published_at) == type(^published_at, :date)
+    )
+    |> Repo.all()
+  end
+
   def list_posts(author, _args) do
     from(p in Post,
       where: p.author_id == ^author.id

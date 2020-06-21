@@ -8,6 +8,7 @@ defmodule Blatant.Content.Post do
     field :body, :string
     field :title, :string
     belongs_to :author, Author
+    field :published_at, :naive_datetime
 
     timestamps()
   end
