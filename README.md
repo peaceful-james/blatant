@@ -15,7 +15,7 @@ g create -n blatant -c gcp -r europe-west1
 g config:set BASIC_AUTH_USERNAME=foo    # obviously not the actual value
 g config:set BASIC_AUTH_PASSWORD=bar    # obviously not the actual value
 g pg:create --free
-git push gigalixir master
+git push gigalixir master   # this is what you run when you want to "deploy" some changes
 g run mix ecto.migrate
 ```
 see app details with `g app`, db details with `g pg` and status with `g ps`.
