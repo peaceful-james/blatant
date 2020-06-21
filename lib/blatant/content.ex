@@ -34,7 +34,7 @@ defmodule Blatant.Content do
   """
   def list_posts do
     Repo.all(Post)
-    |> Repo.preload(author: [user: :credential])
+    |> Repo.preload(author: :user)
   end
 
   @doc """
