@@ -8,6 +8,13 @@ defmodule Blatant.Content do
 
   alias Blatant.Content.Post
 
+  def list_posts(author, _args) do
+    from(p in Post,
+      where: p.author_id == ^author.id
+    )
+    |> Repo.all()
+  end
+
   @doc """
   Returns the list of posts.
 
@@ -38,7 +45,7 @@ defmodule Blatant.Content do
   """
   def get_post!(id) do
     Repo.get!(Post, id)
-    |> Repo.preload(author: [user: :credential])
+    |> Repo.preload(author: :user)
   end
 
   @doc """
@@ -140,7 +147,7 @@ defmodule Blatant.Content do
     case Repo.get(Author, id) do
       nil -> nil
       author -> author
-      |> Repo.preload([:user, :posts])
+      |> Repo.preload([:user])
     end
   end
 

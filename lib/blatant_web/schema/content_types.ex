@@ -1,6 +1,8 @@
 defmodule BlatantWeb.Schema.ContentTypes do
 	use Absinthe.Schema.Notation
 
+  alias BlatantWeb.Resolvers
+
   object :post, name: "Post" do
     field :id, :id
     field :title, :string
@@ -12,7 +14,9 @@ defmodule BlatantWeb.Schema.ContentTypes do
   object :author do
     field :id, :id
     field :bio, :string
-    field :posts, list_of(:post)
+    field :posts, list_of(:post) do
+      resolve &Resolvers.Content.list_posts/3
+    end
     field :user, :user
   end
 
