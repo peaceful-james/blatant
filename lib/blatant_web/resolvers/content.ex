@@ -17,4 +17,8 @@ defmodule BlatantWeb.Resolvers.Content do
         {:ok, author}
     end
   end
+
+  def create_post(_parent, args, _resolution) do
+    Blatant.Content.create_post(args)
+  end
 end

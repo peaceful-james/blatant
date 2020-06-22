@@ -16,7 +16,7 @@ defmodule Blatant.Content.Post do
   @doc false
   def changeset(post, attrs) do
     post
-    |> cast(attrs, [:title, :body])
-    |> validate_required([:title, :body, :author])
+    |> cast(attrs, [:title, :body, :author_id])
+    |> validate_required([:title, :body, :author_id])
   end
 end
